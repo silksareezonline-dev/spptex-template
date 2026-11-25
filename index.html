@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SPP Tex | Coming Soon</title>
+  <meta name="description" content="SPP Tex - Authentic Salem Elampillai silk sarees, direct from the loom. Our new store is coming soon." />
+  <meta name="theme-color" content="#ed1d24" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Jost:wght@300;400;500&family=Rajdhani:wght@500;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* SPP Tex theme (same as the shop: theme-16) */
+    :root {
+      --red: #ed1d24;
+      --gold: #ebb73f;
+      --dark: #1f1416;
+      --cream: #fff8ec;
+      --text: #3b2f2f;
+      --tamil: 'Noto Sans Tamil', 'Jost', sans-serif;
+      --hero: url("https://res.cloudinary.com/dswd3tnyy/image/upload/f_auto,q_auto,w_1600/v1787741390/ChatGPT_Image_Aug_26_2026_03_22_11_PM_1_zb9nra.png");
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Jost', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ---------- Language switch (pure CSS) ---------- */
+    .lang-input { position: absolute; opacity: 0; pointer-events: none; }
+    .lang-switch {
+      position: fixed;
+      top: 52px; right: 16px;
+      z-index: 10;
+      display: flex;
+      background: rgba(0,0,0,.45);
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: 3px;
+      backdrop-filter: blur(4px);
+    }
+    .lang-switch label {
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+      transition: background .2s, color .2s;
+    }
+    .lang-switch label[for="ta"] { font-family: var(--tamil); }
+    #en:checked ~ .lang-switch label[for="en"],
+    #ta:checked ~ .lang-switch label[for="ta"] { background: var(--gold); color: var(--dark); }
+    #en:focus-visible ~ .lang-switch label[for="en"],
+    #ta:focus-visible ~ .lang-switch label[for="ta"] { outline: 2px solid #fff; outline-offset: 2px; }
+
+    .ta { display: none; }
+    #ta:checked ~ .page .en { display: none; }
+    #ta:checked ~ .page .ta { display: inline; }
+
+    /* Tamil text: own font, no letter-spacing or uppercase (they break Tamil letters) */
+    .ta { font-family: var(--tamil); letter-spacing: 0 !important; text-transform: none !important; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 9px 16px;
+    }
+    .topbar .ta { font-size: 13px; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 90px 16px 80px;
+      color: #fff;
+      background:
+        linear-gradient(180deg, rgba(31,20,22,.55) 0%, rgba(31,20,22,.35) 40%, rgba(31,20,22,.85) 100%),
+        var(--hero) center / cover no-repeat;
+    }
+    .hero__inner { max-width: 760px; animation: rise 1s ease-out both; }
+    .logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: clamp(46px, 11vw, 92px);
+      letter-spacing: 6px;
+      line-height: 1;
+      text-shadow: 0 4px 24px rgba(0,0,0,.4);
+    }
+    .logo span { color: var(--gold); }
+    .script {
+      font-family: 'Allura', cursive;
+      font-size: clamp(34px, 7vw, 58px);
+      color: var(--gold);
+      margin-top: 6px;
+      line-height: 1.2;
+    }
+    .script .ta { font-size: .5em; font-weight: 600; }
+    .hero h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: clamp(30px, 6vw, 54px);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-top: 22px;
+      line-height: 1.2;
+    }
+    .hero h1 .ta { font-size: .72em; line-height: 1.5; }
+    .hero p {
+      margin: 16px auto 0;
+      max-width: 560px;
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(255,255,255,.9);
+    }
+    .hero p .ta { font-size: 15px; line-height: 1.9; font-weight: 400; }
+    .badge {
+      display: inline-block;
+      margin-top: 26px;
+      padding: 8px 22px;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: var(--gold);
+      background: rgba(0,0,0,.25);
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 38px;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(237,29,36,.35);
+      transition: transform .2s, background .2s;
+    }
+    .btn .ta { font-size: 15px; }
+    .btn:hover { transform: translateY(-2px); background: #c9151b; }
+
+    /* ---------- Zari border ---------- */
+    .zari {
+      height: 16px;
+      background: repeating-linear-gradient(90deg, var(--gold) 0 18px, var(--red) 18px 24px, var(--gold) 24px 28px, var(--red) 28px 34px);
+    }
+
+    /* ---------- Features ---------- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 16px;
+    }
+    .feature { text-align: center; padding: 10px; }
+    .feature__icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      border: 2px solid var(--gold);
+      color: var(--red);
+      font-size: 28px;
+    }
+    .feature h3 {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 19px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--dark);
+    }
+    .feature h3 .ta { font-size: 16px; }
+    .feature p { font-size: 14px; color: #6b5d5d; margin-top: 6px; line-height: 1.6; }
+    .feature p .ta { font-size: 13px; line-height: 1.8; }
+
+    /* ---------- Strip ---------- */
+    .strip { background: var(--dark); color: #fff; text-align: center; padding: 56px 16px; }
+    .strip .script { margin: 0; }
+    .strip h2 {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 5vw, 36px);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 6px;
+    }
+    .strip h2 .ta { font-size: .75em; }
+    .strip p { margin-top: 12px; color: rgba(255,255,255,.75); font-weight: 300; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: #140d0e;
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 26px 16px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+    footer strong { color: var(--gold); font-weight: 500; }
+
+    @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .hero__inner { animation: none; } }
+
+    @media (max-width: 900px) { .features { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) {
+      .hero { min-height: 80vh; padding: 84px 16px 64px; }
+      .features { gap: 12px; padding: 40px 16px; }
+      .btn { padding: 14px 26px; font-size: 15px; }
+      .lang-switch { top: 48px; right: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language switch: pure CSS (radio buttons) -->
+  <input class="lang-input" type="radio" name="lang" id="en" checked />
+  <input class="lang-input" type="radio" name="lang" id="ta" />
+  <div class="lang-switch" role="group" aria-label="Language">
+    <label for="en">English</label>
+    <label for="ta">தமிழ்</label>
+  </div>
+
+  <div class="page">
+
+    <div class="topbar">
+      &#10022;
+      <span class="en">Our new online store is launching soon</span>
+      <span class="ta">எங்கள் புதிய ஆன்லைன் கடை விரைவில் திறக்கப்படுகிறது</span>
+      &#10022;
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="hero__inner">
+        <div class="logo">SPP <span>TEX</span></div>
+        <div class="script">
+          <span class="en">Elampillai Silk Sarees</span>
+          <span class="ta">இளம்பிள்ளை பட்டுப் புடவைகள்</span>
+        </div>
+        <h1>
+          <span class="en">Something beautiful is being woven</span>
+          <span class="ta">அழகான ஒன்று நெய்யப்படுகிறது</span>
+        </h1>
+        <p>
+          <span class="en">
+            Authentic handloom silk sarees, straight from the weavers of Elampillai, Salem.
+            Our new store is almost ready. Pure silk, honest prices, delivered to your doorstep.
+          </span>
+          <span class="ta">
+            இளம்பிள்ளை, சேலம் நெசவாளர்களிடமிருந்து நேரடியாக அசல் கைத்தறி பட்டுப் புடவைகள்.
+            எங்கள் புதிய கடை கிட்டத்தட்ட தயாராகிவிட்டது. தூய பட்டு, நியாயமான விலை, உங்கள் வீட்டு வாசலுக்கே டெலிவரி.
+          </span>
+        </p>
+        <div class="badge">
+          <span class="en">Coming Soon</span>
+          <span class="ta">விரைவில்</span>
+        </div><br />
+        <a class="btn" href="https://spptex.silksareez.in">
+          <span class="en">Shop Current Collection</span>
+          <span class="ta">தற்போதைய கலெக்ஷனைப் பாருங்கள்</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="zari"></div>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="feature">
+        <div class="feature__icon">&#10047;</div>
+        <h3><span class="en">Direct From Loom</span><span class="ta">நேரடியாக தறியிலிருந்து</span></h3>
+        <p>
+          <span class="en">No middlemen. Straight from Elampillai weavers.</span>
+          <span class="ta">இடைத்தரகர்கள் இல்லை. இளம்பிள்ளை நெசவாளர்களிடமிருந்து நேரடியாக.</span>
+        </p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon">&#10022;</div>
+        <h3><span class="en">Pure Silk</span><span class="ta">தூய பட்டு</span></h3>
+        <p>
+          <span class="en">Rich zari work and authentic fabric quality.</span>
+          <span class="ta">செழுமையான ஜரிகை வேலைப்பாடு, அசல் தரம்.</span>
+        </p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon">&#8377;</div>
+        <h3><span class="en">Cash On Delivery</span><span class="ta">கேஷ் ஆன் டெலிவரி</span></h3>
+        <p>
+          <span class="en">Pay when it arrives. Secure online payment too.</span>
+          <span class="ta">பொருள் வந்ததும் பணம் செலுத்துங்கள். பாதுகாப்பான ஆன்லைன் கட்டணமும் உண்டு.</span>
+        </p>
+      </div>
+      <div class="feature">
+        <div class="feature__icon">&#9992;</div>
+        <h3><span class="en">All-India Shipping</span><span class="ta">இந்தியா முழுவதும் டெலிவரி</span></h3>
+        <p>
+          <span class="en">Safely packed and delivered across India.</span>
+          <span class="ta">பாதுகாப்பாக பேக் செய்து இந்தியா முழுவதும் அனுப்பப்படும்.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Strip -->
+    <section class="strip">
+      <div class="script">
+        <span class="en">Woven with love</span>
+        <span class="ta">அன்புடன் நெய்தது</span>
+      </div>
+      <h2>
+        <span class="en">spptex.in &middot; Launching Soon</span>
+        <span class="ta">spptex.in &middot; விரைவில் அறிமுகம்</span>
+      </h2>
+      <p>
+        <span class="en">Until then, browse and order from our current store.</span>
+        <span class="ta">அதுவரை, எங்கள் தற்போதைய கடையில் பார்த்து ஆர்டர் செய்யுங்கள்.</span>
+      </p>
+      <a class="btn" href="https://spptex.silksareez.in">
+        <span class="en">Visit Store</span>
+        <span class="ta">கடைக்குச் செல்லுங்கள்</span>
+      </a>
+    </section>
+
+    <footer>
+      &copy; 2026 <strong>SPP Tex</strong> &middot;
+      <span class="en">Elampillai, Salem, Tamil Nadu</span>
+      <span class="ta">இளம்பிள்ளை, சேலம், தமிழ்நாடு</span>
+      &middot; spptex.in
+    </footer>
+
+  </div>
+</body>
+</html>
